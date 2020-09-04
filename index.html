@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Basemap</title>
+		<!-- Leaflet Css-->
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+		<!-- Leaflet js-->
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    </head>
+
+    <body>
+		<div id="mymap" style="height: 800px"></div>
+		<!-- Java Scripts-->
+		<script type="text/javascript">
+			//Tutorial Layer - Obtained from leaflet map
+			var tutorialLayer = L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {
+					attribution: 'Map tiles by Stamen Design, under CC BY 3.0. Data by OpenStreetMap, under ODbL.',
+					maxZoom: 18,
+					minZoom: 1
+				});
+			//Tutorial Layer - Obtained from assignment
+			var assigmentLayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+				maxZoom: 18,
+				id: 'mapbox.satellite',
+				accessToken: 'pk.eyJ1Ijoia2VpMTEwIiwiYSI6ImNqcmczdWJzNzFpOXk0NHA0ZDdwaThyZmgifQ.SN2dLbaBpbdlJyE5OCmndQ'
+			});
+			//map
+			var map = L.map('mymap', {
+				center: [-23.6187032, -79.4775624],
+				zoom: 3,
+				layers: [assigmentLayer] //add to map
+			});
+			var baseMaps = {
+				"Assignment": assigmentLayer,
+				"<span style='color: black'>Tutorial</span>": tutorialLayer
+			};
+			L.control.layers(baseMaps).addTo(map);
+		</script>
+    </body>
+</html>
